@@ -10,11 +10,14 @@ def index(request):
 
 
 def wiki(request, title):
+    return render(request, "encyclopedia/content.html", {
+        "title": title,
+        "entry": util.get_entry(title),
+    })
+
+def search(request):
     if request.method == 'POST':
-        title = request.POST['q']
-        
+        q = request.POST['q']
+        return redirect('/wiki/%s' %q)
     else:
-        return render(request, "encyclopedia/content.html", {
-            "title": title,
-            "entry": util.get_entry(title),
-        })
+        return redirect('/')
