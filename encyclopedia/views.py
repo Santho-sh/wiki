@@ -1,5 +1,4 @@
 from django.shortcuts import render, redirect
-
 from . import util
 
 
@@ -15,9 +14,20 @@ def wiki(request, title):
         "entry": util.get_entry(title),
     })
 
+
 def search(request):
     if request.method == 'POST':
         q = request.POST['q']
         return redirect('/wiki/%s' %q)
     else:
         return redirect('/')
+    
+    
+def create(request):
+    # form = CreateForm()
+    return render(request, 'encyclopedia/create.html')
+
+
+def edit(request):
+    # form = EditForm()
+    return render(request, 'encyclopedia/create.html')
