@@ -18,10 +18,23 @@ def wiki(request, title):
 
 def search(request):
     if request.method == 'POST':
-        q = request.POST['q']
-        return redirect('/wiki/%s' %q)
+        
+        q = request.POST['q'].lower()
+        entries = util.list_entries()
+        results = []
+        
+        for entry in entries:
+            if q == entry.lower():
+                return redirect('/wiki/%s' %entry)
+            
+            elif q in entry.lower():
+                results.append(entry)
+        
+        else:        
+            return render(request, 'encyclopedia/search.html', {'results':results, 'query':q })
     else:
         return redirect('/')
+    
     
     
 def random(request):
