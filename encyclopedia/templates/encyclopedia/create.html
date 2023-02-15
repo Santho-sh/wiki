@@ -5,8 +5,9 @@
 {% endblock %}
 
 {% block body %}
-    <form>
+    <form action={% url 'create' %} method='post'>
     {% csrf_token %}
-    {{ form }}
+    {{ form.as_p }}
+    <button class='save button'>Save</button>
     </form>
 {% endblock %}
