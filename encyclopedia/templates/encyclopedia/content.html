@@ -1,7 +1,7 @@
 {% extends 'encyclopedia/layout.html' %}
 
 {% block title %}
-    Content:{{title}}
+    Wiki: {{title}}
 {% endblock %}
 
 {% block body %}
@@ -10,7 +10,7 @@
 
         <h3>{{title}}</h3>
         <p>{{content}}</p>
-        <button class='edit_button'>
+        <button class='edit button'>
             <a href={% url 'edit' title %}>Edit Content</a>
         </button>
 

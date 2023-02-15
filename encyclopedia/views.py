@@ -53,10 +53,11 @@ def edit(request, title):
     
     if request.method == 'POST':
         
-        title = request.POST['title']
-        content = request.POST['content']
+        new_content = request.POST['new_content']  
         
-        return render(request, 'encyclopedia/create.html')
+        util.save_entry(title, new_content)
+        return redirect('/')
     
     else:
-        ...
+        return render(request, 'encyclopedia/edit.html', {'title':title, 'old_content': util.get_entry(title),
+        })
