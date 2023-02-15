@@ -1,5 +1,6 @@
 from django.shortcuts import render, redirect
 from . import util
+from random import choice
 
 
 def index(request):
@@ -23,6 +24,12 @@ def search(request):
         return redirect('/')
     
     
+def random(request):
+    entries = util.list_entries()
+    entry = choice(entries)
+    return redirect('/wiki/%s' %entry)
+
+
 def create(request):
     # form = CreateForm()
     return render(request, 'encyclopedia/create.html')
