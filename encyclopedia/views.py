@@ -2,7 +2,7 @@ from django.shortcuts import render, redirect
 from . import util
 from random import choice
 from .forms import CreateForm
-
+import markdown2
 
 def index(request):
     return render(request, "encyclopedia/index.html", {
@@ -11,9 +11,10 @@ def index(request):
 
 
 def wiki(request, title):
+    content = markdown2.markdown(util.get_entry(title))
     return render(request, "encyclopedia/content.html", {
         "title": title,
-        "content": util.get_entry(title),
+        "content": content,
     })
 
 
@@ -59,7 +60,6 @@ def create(request):
 
 
 def edit(request, title):
-    
     if request.method == 'POST':
         
         new_content = request.POST['new_content']  
