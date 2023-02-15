@@ -6,12 +6,18 @@
 
 {% block body %}
 
-    {% if entry %}
+    {% if content %}
+
         <h3>{{title}}</h3>
-        <p>{{entry}}</p>
+        <p>{{content}}</p>
+        <button class='edit_button'>
+            <a href={% url 'edit' title %}>Edit Content</a>
+        </button>
 
     {% else %}
+
         <h3>page was not found</h3>
+
     {% endif %}
     
 {% endblock %}

@@ -1,6 +1,7 @@
 from django.shortcuts import render, redirect
 from . import util
 from random import choice
+from .forms import CreateForm
 
 
 def index(request):
@@ -12,7 +13,7 @@ def index(request):
 def wiki(request, title):
     return render(request, "encyclopedia/content.html", {
         "title": title,
-        "entry": util.get_entry(title),
+        "content": util.get_entry(title),
     })
 
 
@@ -44,10 +45,18 @@ def random(request):
 
 
 def create(request):
-    # form = CreateForm()
-    return render(request, 'encyclopedia/create.html')
+    form = CreateForm()
+    return render(request, 'encyclopedia/create.html', {'form':form})
 
 
-def edit(request):
-    # form = EditForm()
-    return render(request, 'encyclopedia/create.html')
+def edit(request, title):
+    
+    if request.method == 'POST':
+        
+        title = request.POST['title']
+        content = request.POST['content']
+        
+        return render(request, 'encyclopedia/create.html')
+    
+    else:
+        ...
