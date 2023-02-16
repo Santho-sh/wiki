@@ -7,9 +7,8 @@
 {% block body %}
 
     {% if content %}
-
-        <h3>{{title}}</h3>
-        <p>{{content}}</p>
+    
+        <p>{{content|safe}}</p>
         <button class='edit button'>
             <a href={% url 'edit' title %}>Edit Content</a>
         </button>

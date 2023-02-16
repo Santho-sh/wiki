@@ -12,7 +12,7 @@ def index(request):
 
 def wiki(request, title):
     content = markdown2.markdown(util.get_entry(title))
-    return render(request, "encyclopedia/content.html", {
+    return render(request,"encyclopedia/content.html", {
         "title": title,
         "content": content,
     })
