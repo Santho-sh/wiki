@@ -1,8 +1,8 @@
 from django.shortcuts import render, redirect
 from . import util
 from random import choice
-from .forms import CreateForm
 import markdown2
+
 
 def index(request):
     return render(request, "encyclopedia/index.html", {
@@ -11,7 +11,9 @@ def index(request):
 
 
 def wiki(request, title):
-    content = markdown2.markdown(util.get_entry(title))
+    content = util.get_entry(title)
+    if content != None:
+        content = markdown2.markdown(content)
     return render(request,"encyclopedia/content.html", {
         "title": title,
         "content": content,
@@ -49,6 +51,12 @@ def create(request):
     if request.method == 'POST':
         title = request.POST['title']
         content = request.POST['content']
+        entries = util.list_entries()
+        entries_lower = [i.lower() for i in entries]
+        if title.lower() in entries_lower:
+            message = 'Title already exists.'
+            return render(request, 'encyclopedia/error.html', {'message':message})
+        
         util.save_entry(title, content)
         return redirect('/')
         
