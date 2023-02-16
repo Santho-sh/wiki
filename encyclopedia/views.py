@@ -47,16 +47,12 @@ def random(request):
 
 def create(request):
     if request.method == 'POST':
+        title = request.POST['title']
+        content = request.POST['content']
+        util.save_entry(title, content)
+        return redirect('/')
         
-        form = CreateForm(request.POST)
-        if form.is_valid():
-            title = form.cleaned_data['title']
-            content = form.cleaned_data['content']
-            util.save_entry(title, content)
-            return redirect('/')
-        
-    form = CreateForm()
-    return render(request, 'encyclopedia/create.html', {'form':form})
+    return render(request, 'encyclopedia/create.html')
 
 
 def edit(request, title):

@@ -13,8 +13,17 @@ h1 {
 }
 
 textarea {
-    height: 90vh;
+    height: 40vh;
     width: 80%;
+}
+
+a{
+    color: inherit;
+}
+
+a:hover{
+    color: gray;
+    text-decoration: none;
 }
 
 .main {
@@ -23,8 +32,10 @@ textarea {
 
 .search {
     width: 100%;
-    font-size: 15px;
+    height: 1.7rem;
+    font-size: 13px;
     line-height: 15px;
+    border-radius: 3px;
 }
 
 .sidebar {
@@ -35,4 +46,20 @@ textarea {
 
 .sidebar h2 {
     margin-top: 5px;
+}
+
+.button{
+    width: 4rem;
+    align-items: center;
+}
+
+.button:hover{
+    color: gray;
+}
+
+.edit,
+.create {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
 }

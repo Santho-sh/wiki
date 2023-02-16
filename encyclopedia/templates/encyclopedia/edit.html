@@ -6,12 +6,12 @@
 
 {% block body %}
 
-    <form action={% url 'edit' title %} method='post'>
+    <form class='edit' action={% url 'edit' title %} method='post'>
     {% csrf_token %}
     <h4>Edit: {{title}}</h4>
 
     <textarea name="new_content" rows="4" cols="50">{{old_content}}</textarea>
-    <button class='save button'>Save
+    <button class='save button btn btn-secondary'>Save
     </button>
 
     </form>

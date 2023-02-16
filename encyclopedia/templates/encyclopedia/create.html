@@ -5,9 +5,16 @@
 {% endblock %}
 
 {% block body %}
-    <form action={% url 'create' %} method='post'>
+    <form class='create' action={% url 'create' %} method='post'>
     {% csrf_token %}
-    {{ form.as_p }}
-    <button class='save button'>Save</button>
+    <h3>Create New Page:</h3>
+    <div class="input-group mb-3">
+        <input name='title' type="text" class="form-control" placeholder="Title" aria-label="Username" aria-describedby="basic-addon1"
+        required>
+      </div>
+    <div>
+    <textarea name='content' class="form-control" aria-label="With textarea" placeholder="Content" rows='10' required></textarea>
+    </div>
+    <button class='save button btn btn-secondary'>Save</button>
     </form>
 {% endblock %}

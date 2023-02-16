@@ -9,8 +9,8 @@
     {% if content %}
     
         <p>{{content|safe}}</p>
-        <button class='edit button'>
-            <a href={% url 'edit' title %}>Edit Content</a>
+        <button class='edit button btn btn-secondary'>
+            <a href={% url 'edit' title %}>Edit</a>
         </button>
 
     {% else %}
